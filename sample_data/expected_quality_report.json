@@ -1,0 +1,26 @@
+{
+  "original_rows": 8,
+  "cleaned_rows": 7,
+  "columns": [
+    "patient_id",
+    "age",
+    "region",
+    "biomarker"
+  ],
+  "duplicates_removed": 1,
+  "missing_cells_before": 4,
+  "missing_cells_after": 0,
+  "quality_score_before": 84.4,
+  "quality_score_after": 100.0,
+  "missing_value_strategy": {
+    "patient_id": "mode",
+    "age": "median",
+    "region": "mode",
+    "biomarker": "median"
+  },
+  "outliers_flagged_not_removed": {
+    "age": 2,
+    "biomarker": 1
+  },
+  "limitations": "Basic tabular cleaning only. Does not handle leakage, label issues or domain-specific preprocessing."
+}

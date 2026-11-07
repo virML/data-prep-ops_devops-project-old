@@ -1,0 +1,104 @@
+{
+  "uid": "dataprepops-demo",
+  "title": "DataPrepOps API Overview",
+  "tags": [
+    "classroom",
+    "DevSecOps"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "API Scrape Status (1=UP)",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 6
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dataprepops-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "up{job=\"dataprepops-api\"}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "API Requests / Second",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 8,
+        "y": 0,
+        "w": 16,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dataprepops-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "sum by (status) (rate(dataprepops_http_requests_total[2m]))",
+          "legendFormat": "HTTP {{status}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Unauthorized Requests (last 5 min)",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 6,
+        "w": 8,
+        "h": 5
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dataprepops-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "sum(increase(dataprepops_http_requests_total{status=\"401\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

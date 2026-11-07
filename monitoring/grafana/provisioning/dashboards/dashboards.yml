@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: DataPrepOps
+    orgId: 1
+    folder: DataPrepOps
+    type: file
+    disableDeletion: false
+    editable: false
+    options:
+      path: /etc/grafana/dashboards

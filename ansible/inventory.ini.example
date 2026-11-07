@@ -1,0 +1,2 @@
+[control]
+REPLACE_PUBLIC_IP ansible_user=ubuntu
